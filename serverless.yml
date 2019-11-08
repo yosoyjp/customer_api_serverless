@@ -1,0 +1,14 @@
+# file: serverless.yml
+
+service: customers-api
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-west-2
+
+functions:
+  - '${file(src/handlers/customers/customers.serverless.yml)}'
+
+plugins:
+  - serverless-offline

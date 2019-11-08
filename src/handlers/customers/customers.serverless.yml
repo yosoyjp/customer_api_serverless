@@ -1,0 +1,22 @@
+# file: src/handlers/customers/customers.serverless.yml
+
+list:
+  handler: src/handlers/customers/list.handler
+  events:
+    - http: get /customers
+get:
+  handler: src/handlers/customers/get.handler
+  events:
+    - http: get /customer/{id}
+add:
+  handler: src/handlers/customers/add.handler
+  events:
+    - http: post /customer
+update:
+  handler: src/handlers/customers/update.handler
+  events:
+    - http: put /customer/{id}
+delete:
+  handler: src/handlers/customers/delete.handler
+  events:
+    - http: delete /customer/{id}
