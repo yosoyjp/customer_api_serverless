@@ -13,7 +13,7 @@ const noContent = withStatusCode(204);
 exports.handler = async (event) => {
     let { dni } = event.pathParameters;
     
-    await repository.delete(id);
+    await repository.delete(dni);
 
     return noContent();
 };
