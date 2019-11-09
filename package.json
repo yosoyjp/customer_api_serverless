@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sls": "serverless",
     "seed": "node ./seed/runner.js",
-    "start": "sls offline start"
+    "start": "sls offline -s dev"
   },
   "keywords": [],
   "author": "Johnny Pacheco",
@@ -17,5 +17,8 @@
     "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "serverless-offline": "^5.12.0"
+  },
+  "dependencies": {
+    "node-uuid": "^1.4.8"
   }
 }

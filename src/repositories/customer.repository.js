@@ -23,25 +23,27 @@ class CustomerRepository {
         return response.Items || [];
     }
 
-    async get(id) {
-        const params = this._createParamObject({ Key: { id } });
+    async get(dni) {
+        const params = this._createParamObject({ Key: { dni } });
         const response = await this._docClient.get(params).promise();
 
         return response.Item || [];
     }
 
     async put(customer) {
-        const params = this._createParamObject({ Item: { customer } });
+        
+        const params = this._createParamObject({ Item: customer });
+        console.log(params);
         await this._docClient.put(params).promise();
 
         return customer;
     }
 
-    async delete(id) {
-        const params = this._createParamObject({ Key: { id } });
+    async delete(dni) {
+        const params = this._createParamObject({ Key: { dni } });
         await this._docClient.delete(params).promise();
 
-        return id;
+        return dni;
     }
 
 }

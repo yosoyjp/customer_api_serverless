@@ -12,10 +12,10 @@ const ok = withStatusCode(200, JSON.stringify);
 const notFound = withStatusCode(404);
 
 exports.handler = async (event) => {
-  let { id } = event.pathParameters;
-  id = (typeof id === 'string') ? parseInt(id) : id;
+  let { dni } = event.pathParameters; 
   
-  const customer = await repository.get(id);
+
+  const customer = await repository.get(dni);
 
   if (!customer){
     return notFound();

@@ -7,16 +7,18 @@ const { withStatusCode } = require('../../utils/response.util');
 const { parseWith } = require('../../utils/request.util');
 const { withProcessEnv } = require('../../dynamodb.factory');
 
+
+
 const docClient = withProcessEnv(process.env)();
 const repository = new CustomerRepository(docClient);
 const created = withStatusCode(201);
 const parseJson = parseWith(JSON.parse);
 
 exports.handler = async (event) => {
-  const { body } = event;
-  const customer = parseJson(body);
+    const { body } = event;
+    const customer = parseJson(body);
+    console.group(customer);
+    await repository.put(customer);
 
-  await repository.put(customer);
-
-  return created();
+    return created();
 };

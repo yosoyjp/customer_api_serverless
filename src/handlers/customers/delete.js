@@ -11,9 +11,9 @@ const repository = new CustomerRepository(docClient);
 const noContent = withStatusCode(204);
 
 exports.handler = async (event) => {
-  const { id } = event.pathParameters;
+    let { dni } = event.pathParameters;
+    
+    await repository.delete(id);
 
-  await repository.delete(id);
-
-  return noContent();
+    return noContent();
 };

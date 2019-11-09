@@ -7,7 +7,7 @@ list:
 get:
   handler: src/handlers/customers/get.handler
   events:
-    - http: get /customer/{id}
+    - http: get /customer/{dni}
 add:
   handler: src/handlers/customers/add.handler
   events:
@@ -15,8 +15,12 @@ add:
 update:
   handler: src/handlers/customers/update.handler
   events:
-    - http: put /customer/{id}
+    - http: put /customer/{dni}
 delete:
   handler: src/handlers/customers/delete.handler
   events:
-    - http: delete /customer/{id}
+    - http: delete /customer/{dni}
+deleteTable:
+  handler: src/handlers/customers/deleteTable.handler
+  events:
+    - http: delete /table

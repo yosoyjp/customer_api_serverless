@@ -16,16 +16,16 @@ const parseJson = parseWith(JSON.parse);
 
 exports.handler = async (event) => {
   const { body, pathParameters } = event;
-  const { id } = pathParameters;
+  const { dni } = pathParameters;
 
-  const existingCustomer = await repository.get(id);
+  const existingCustomer = await repository.get(dni);
   const customer = parseJson(body);
 
   if (!existingCustomer) {
     return notFound();
   }
 
-  if (existingCustomer.id !== customer.id) {
+  if (existingCustomer.dni !== customer.dni) {
     return badRequest();
   }
 
