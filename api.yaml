@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: Customers API
+  description: CRUD for table of customers with AWS and Serverless Framework
+  version: 0.0.0
+
+servers:
+  - url: https://boxg1l6wr4.execute-api.us-east-2.amazonaws.com/dev/
+  description: Server in aws with API Gateway and lambda funtions
+
+paths:
+  /customer:
+    post:
+      summary: Create a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: string
+                surname: string
+                age: integer
+                typeDoc: string
+                city: string
+                dni: string
+      responses:
+        '201':
+          description: Customer created with success
+          content:
+            application/json:
+              schema: 
+                type: array
+        '400':
+          description: Error in the requested data
+  /customer/{dni}:
+    put:
+      summary: Create a customer
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          description: Identity document of client
+           schema:
+            type : string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: string
+                surname: string
+                age: integer
+                typeDoc: string
+                city: string
+                dni: string
+      responses:
+        '202':
+          description: Customer update with success
+          content:
+            application/json:
+              schema: 
+                type: array
+        '400':
+          description: Error in the requested data
+    delete:
+      summary: Delete a customer
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          description: Identity document of client
+           schema:
+            type : string
+      responses:
+        '202':
+          description: Customer delete with success
+    get:
+      summary: Get a customer by dni
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          description: Identity document of client
+           schema:
+            type : string
+      responses:
+        '200':
+          description: Customer got
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name: string
+                  surname: string
+                  age: integer
+                  typeDoc: string
+                  city: string
+                  dni: string
+        '404':
+          description: Customer not found
+  /customers:
+    get:
+      summary: Get alls customers
+      responses:
+        '200':
+          description: List of customers as array of objects
+          content:
+            application/json:
+              schema:
+                type: array
+  /customers/age/{filter}/{age}:
+    get:
+      summary: Return customer list older or younger than a specified age
+      parameters:
+        - name: filter
+          in: path
+          required: true
+          description: Age filter. Only 'up' or 'down' is accepted
+           schema:
+            type : string
+        - name: age
+          in: path
+          required: true
+          description: limiting age
+           schema:
+            type : integer || string
+      responses:
+        '200':
+          description: Returns list of clients that meet the condition
+          content:
+            application/json:
+              schema:
+                type: array
+        '404':
+          description: Invalidity petition. Error in sent fields.
+   /customers/typeDoc/{typeDoc}:
+    get:
+      summary: Returns customer list with the type of document indicated.
+      parameters:
+        - name: typeDoc
+          in: path
+          required: true
+          description: Type of document
+           schema:
+            type : string
+      responses:
+        '200':
+          description: Returns list of clients that meet the condition
+          content:
+            application/json:
+              schema:
+                type: array
+        '404':
+          description: Invalidity petition. Error in sent fields.
+
