@@ -8,6 +8,10 @@ get:
   handler: src/handlers/customers/get.handler
   events:
     - http: get /customer/{dni}
+getType:
+  handler: src/handlers/customers/getType.handler
+  events:
+    - http: get /customers/typeDoc/{typeDoc}
 add:
   handler: src/handlers/customers/add.handler
   events:

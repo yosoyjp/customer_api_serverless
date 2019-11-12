@@ -4,7 +4,7 @@
 		"surname": "Wall",
 		"dni": "1659113070999",
 		"age": 48,
-        "type": "C.C",
+        "typeDoc": "C.C",
 		"city": "Grand-Leez"
 	},
 	{
@@ -12,7 +12,7 @@
 		"surname": "Preston",
 		"dni": "1659111835399",
 		"age": 41,
-        "type": "C.C",
+        "typeDoc": "C.C",
 		"city": "Sant'Ilario dello Ionio"
 	},
 	{
@@ -20,7 +20,7 @@
 		"surname": "Ramirez",
 		"dni": "1666060560299",
 		"age": 17,
-        "type": "T.I",
+        "typeDoc": "T.I",
 		"city": "Heikruis"
 	},
 	{
@@ -28,7 +28,7 @@
 		"surname": "Warren",
 		"dni": "1602040376999",
 		"age": 79,
-        "type": "C.C",
+        "typeDoc": "C.C",
 		"city": "Barbania"
 	},
 	{
@@ -36,7 +36,7 @@
 		"surname": "Berry",
 		"dni": "1657021363499",
 		"age": 58,
-        "type": "C.C",
+        "typeDoc": "C.C",
 		"city": "Meetkerke"
 	}
 ]
