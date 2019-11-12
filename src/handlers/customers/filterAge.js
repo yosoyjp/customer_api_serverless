@@ -12,14 +12,17 @@ const ok = withStatusCode(200, JSON.stringify);
 const notFound = withStatusCode(404);
 
 exports.handler = async (event) => {
-  let { dni } = event.pathParameters;
+    let { filter, age } = event.pathParameters;
 
+    let customers;
 
-  const customer = await repository.get(dni);
+    if ((filter === 'up' || filter === 'down') && (!isNaN(age) && (age = parseInt(age)))) {
+        customers = await repository.filterAge(filter, age);
+    }
 
-  if (!customer) {
-    return notFound();
-  }
+    if (!customers) {
+        return notFound();
+    }
 
-  return ok(customer);
+    return ok(customers);
 };

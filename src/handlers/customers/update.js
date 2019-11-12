@@ -6,6 +6,7 @@ const { CustomerRepository } = require('../../repositories/customer.repository')
 const { withStatusCode } = require('../../utils/response.util');
 const { parseWith } = require('../../utils/request.util');
 const { withProcessEnv } = require('../../dynamodb.factory');
+const { validateCustomerData } = require('../../utils/validateData');
 
 const docClient = withProcessEnv(process.env)();
 const repository = new CustomerRepository(docClient);
@@ -20,7 +21,7 @@ exports.handler = async (event) => {
 
   const existingCustomer = await repository.get(dni);
   const customer = parseJson(body);
-  console.log(customer);
+
   if (!existingCustomer) {
     return notFound();
   }
@@ -29,7 +30,14 @@ exports.handler = async (event) => {
     return badRequest();
   }
 
-  await repository.put(customer);
+  if (validateCustomerData(customer)) {
 
-  return accepted(JSON.stringify(customer));
+    await repository.put(customer);
+    return accepted(JSON.stringify(customer));
+
+  } else {
+
+    return badRequest();
+  }
+
 };

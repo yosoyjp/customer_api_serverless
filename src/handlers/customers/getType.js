@@ -12,14 +12,14 @@ const ok = withStatusCode(200, JSON.stringify);
 const notFound = withStatusCode(404);
 
 exports.handler = async (event) => {
-  let { typeDoc } = event.pathParameters; 
-  
+    let { typeDoc } = event.pathParameters;
 
-  const customer = await repository.type(typeDoc);
 
-  if (!customer){
-    return notFound();
-  }
+    const customer = await repository.type(typeDoc);
 
-  return ok(customer);
+    if (!customer) {
+        return notFound();
+    }
+
+    return ok(customer);
 };

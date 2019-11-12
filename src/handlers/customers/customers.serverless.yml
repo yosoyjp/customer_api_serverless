@@ -12,6 +12,10 @@ getType:
   handler: src/handlers/customers/getType.handler
   events:
     - http: get /customers/typeDoc/{typeDoc}
+filterAge:
+  handler: src/handlers/customers/filterAge.handler
+  events:
+    - http: get /customers/age/{filter}/{age}
 add:
   handler: src/handlers/customers/add.handler
   events:

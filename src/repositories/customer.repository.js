@@ -30,8 +30,7 @@ class CustomerRepository {
         return response.Item || [];
     }
 
-    async type(type) {
-        
+    async type(type) {    
         const params = this._createParamObject({
             FilterExpression: 'typeDoc = :typeDoc',
             ExpressionAttributeValues:{
@@ -40,12 +39,23 @@ class CustomerRepository {
         } );
 
         const response = await this._docClient.scan(params).promise();
+        return response.Items || [];
+    }
 
+    async filterAge(filter, age) {
+
+        const params = this._createParamObject({
+            FilterExpression: (filter === 'up') ? 'age >= :age' : 'age <= :age' ,
+            ExpressionAttributeValues:{
+                ':age' : age
+            }
+        } );
+        const response = await this._docClient.scan(params).promise();
         return response.Items || [];
     }
 
     async put(customer) {
-        
+        customer.age = (typeof customer.age === 'string') ? parseInt(customer.age, 10) : customer.age;
         const params = this._createParamObject({ Item: customer });
         await this._docClient.put(params).promise();
 

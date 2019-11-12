@@ -13,12 +13,21 @@ const docClient = withProcessEnv(process.env)();
 const repository = new CustomerRepository(docClient);
 const created = withStatusCode(201);
 const parseJson = parseWith(JSON.parse);
+const {validateCustomerData } = require('../../utils/validateData');
+const badRequest = withStatusCode(400);
 
 exports.handler = async (event) => {
     const { body } = event;
     const customer = parseJson(body);
-    console.group(customer);
-    await repository.put(customer);
 
-    return created();
+    if(validateCustomerData(customer)){
+
+        await repository.put(customer);
+        return created(JSON.stringify(customer));
+
+    }else{
+
+        return badRequest();
+    }
+
 };

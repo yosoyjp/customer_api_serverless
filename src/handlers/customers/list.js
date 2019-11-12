@@ -10,7 +10,7 @@ const docClient = withProcessEnv(process.env)();
 const repository = new CustomerRepository(docClient);
 const ok = withStatusCode(200, JSON.stringify);
 
-exports.handler = async (event) => {
+exports.handler = async () => {
   const customers = await repository.list();
 
   return ok(customers);
