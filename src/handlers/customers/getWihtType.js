@@ -1,4 +1,3 @@
-// file: src/handlers/customers/get.js
 
 require('dotenv/config');
 
@@ -15,11 +14,11 @@ exports.handler = async (event) => {
   let { dni, typeDoc } = event.pathParameters;
 
 
-  const customer = await repository.get(dni);
+  const customers = await repository.getWithType(dni, typeDoc);
 
-  if (!customer) {
+  if (!customers) {
     return notFound();
   }
 
-  return ok(customer);
+  return ok(customers);
 };

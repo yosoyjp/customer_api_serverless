@@ -24,19 +24,38 @@ class CustomerRepository {
     }
 
     async get(dni) {
-        const params = this._createParamObject({ Key: { dni } });
-        const response = await this._docClient.get(params).promise();
+        const params = this._createParamObject({
+            FilterExpression: 'dni = :dni',
+            ExpressionAttributeValues: {
+                ':dni': dni,
+            }
+        });
+        const response = await this._docClient.scan(params).promise();
 
-        return response.Item || [];
+        return (response.Items) ? response.Items[0] : null;
     }
 
-    async type(type) {    
+    async getWithType(dni, typeDoc) {
+        const params = this._createParamObject({
+            FilterExpression: '(dni = :dni) and (typeDoc = :typeDoc)',
+            ExpressionAttributeValues: {
+                ':dni': dni,
+                ':typeDoc': typeDoc
+            }
+        });
+
+        const response = await this._docClient.scan(params).promise();
+
+        return (response.Items) ? response.Items[0] : null;
+    }
+
+    async type(type) {
         const params = this._createParamObject({
             FilterExpression: 'typeDoc = :typeDoc',
-            ExpressionAttributeValues:{
-                ':typeDoc' : type
+            ExpressionAttributeValues: {
+                ':typeDoc': type
             }
-        } );
+        });
 
         const response = await this._docClient.scan(params).promise();
         return response.Items || [];
@@ -45,11 +64,11 @@ class CustomerRepository {
     async filterAge(filter, age) {
 
         const params = this._createParamObject({
-            FilterExpression: (filter === 'up') ? 'age >= :age' : 'age <= :age' ,
-            ExpressionAttributeValues:{
-                ':age' : age
+            FilterExpression: (filter === 'up') ? 'age >= :age' : 'age <= :age',
+            ExpressionAttributeValues: {
+                ':age': age
             }
-        } );
+        });
         const response = await this._docClient.scan(params).promise();
         return response.Items || [];
     }

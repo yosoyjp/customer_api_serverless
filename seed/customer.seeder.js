@@ -23,12 +23,21 @@ class CustomerSeeder {
             // Required HASH type attribute
             AttributeName: 'dni',
             KeyType: 'HASH',
+          },
+          {
+            // Required HASH type attribute
+            AttributeName: 'typeDoc',
+            KeyType: 'RANGE',
           }
         ],
         AttributeDefinitions: [
           // The names and types of all primary and index key attributes only
           {
             AttributeName: 'dni',
+            AttributeType: 'S', // (S | N | B) for string, number, binary
+          },
+          {
+            AttributeName: 'typeDoc',
             AttributeType: 'S', // (S | N | B) for string, number, binary
           }
         ],
