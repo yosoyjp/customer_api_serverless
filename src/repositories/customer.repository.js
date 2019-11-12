@@ -31,7 +31,6 @@ class CustomerRepository {
     }
 
     async type(type) {
-        console.debug(type);
         
         const params = this._createParamObject({
             FilterExpression: 'typeDoc = :typeDoc',
@@ -39,17 +38,15 @@ class CustomerRepository {
                 ':typeDoc' : type
             }
         } );
-        console.log(params);
 
         const response = await this._docClient.scan(params).promise();
-        console.log(response);
+
         return response.Items || [];
     }
 
     async put(customer) {
         
         const params = this._createParamObject({ Item: customer });
-        console.log(params);
         await this._docClient.put(params).promise();
 
         return customer;
