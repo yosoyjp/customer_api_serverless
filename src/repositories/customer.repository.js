@@ -4,7 +4,7 @@
 class CustomerRepository {
     get _baseParams() {
         return {
-            TableName: 'customers'
+            TableName: this._tableName
         };
     }
 
@@ -12,8 +12,9 @@ class CustomerRepository {
         return Object.assign({}, this._baseParams, additionalArgs);
     }
 
-    constructor(docClient) {
+    constructor(docClient, tableName) {
         this._docClient = docClient;
+        this._tableName = tableName;
     }
 
     async list() {

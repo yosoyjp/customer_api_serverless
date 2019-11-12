@@ -4,35 +4,44 @@ list:
   handler: src/handlers/customers/list.handler
   events:
     - http: get /customers
+      cors: true
 get:
   handler: src/handlers/customers/get.handler
   events:
     - http: get /customer/{dni}
+      cors: true
 getWihtType:
   handler: src/handlers/customers/getWihtType.handler
   events:
-    - http: get /customers/{dni}/{typeDoc}
+    - http: get /customer/{dni}/{typeDoc}
+      cors: true
 getType:
   handler: src/handlers/customers/getType.handler
   events:
     - http: get /customers/typeDoc/{typeDoc}
+      cors: true
 filterAge:
   handler: src/handlers/customers/filterAge.handler
   events:
     - http: get /customers/age/{filter}/{age}
+      cors: true
 add:
   handler: src/handlers/customers/add.handler
   events:
     - http: post /customer
+      cors: true
 update:
   handler: src/handlers/customers/update.handler
   events:
     - http: put /customer/{dni}
+      cors: true
 delete:
   handler: src/handlers/customers/delete.handler
   events:
     - http: delete /customer/{dni}
+      cors: true
 deleteTable:
   handler: src/handlers/customers/deleteTable.handler
   events:
     - http: delete /table
+      cors: true

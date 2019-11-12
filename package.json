@@ -7,18 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sls": "serverless",
     "seed": "node ./seed/runner.js",
-    "start": "sls offline -s dev"
+    "start": "sls offline -s dev",
+    "deploy": "serverless deploy --aws-profile serverless",
+    "package": "serverless package"
   },
   "keywords": [],
   "author": "Johnny Pacheco",
   "license": "ISC",
   "devDependencies": {
     "aws-sdk": "^2.567.0",
-    "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "serverless-offline": "^5.12.0"
   },
   "dependencies": {
-    "node-uuid": "^1.4.8"
+    "dotenv": "^8.2.0"
   }
 }

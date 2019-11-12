@@ -5,7 +5,7 @@ class CustomerSeeder {
       this.dynamodb = dynamodb;
       this.docClient = docClient;
   
-      this._tablename = 'customers';
+      this._tablename = 'customers-api-dev-customers';
     }
   
     async hasTable() {

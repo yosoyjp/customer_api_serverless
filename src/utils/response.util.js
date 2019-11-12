@@ -12,7 +12,11 @@ const withStatusCode = (statusCode, formatter = null) => {
     // return a function that will take some data and formats a response with a status code
     return (data = null) => {
       const response = {
-        statusCode: statusCode
+        statusCode: statusCode,
+        headers: {
+          'Access-Controll-Allow-Origin': '*',
+          'Access-Controll-Allow-Credentials': true
+        }
       };
   
       // only send a body if there is data
