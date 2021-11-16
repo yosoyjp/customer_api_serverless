@@ -15,7 +15,7 @@
   "author": "Johnny Pacheco",
   "license": "ISC",
   "devDependencies": {
-    "aws-sdk": "^2.567.0",
+    "aws-sdk": "^2.814.0",
     "jest": "^24.9.0",
     "serverless-offline": "^5.12.0"
   },
